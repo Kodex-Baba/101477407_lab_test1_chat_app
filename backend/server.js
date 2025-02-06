@@ -10,6 +10,12 @@ const GroupMessage = require('./models/GroupMessage');
 const PrivateMessage = require('./models/PrivateMessage');
 
 const app = express();
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+    credentials: true
+}));
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
@@ -23,7 +29,8 @@ const io = socketIo(server, {
 connectDB();
 
 // Middleware
-app.use(cors());
+
+
 app.use(express.json());
 
 // Test Route
